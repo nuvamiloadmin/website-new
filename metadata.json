@@ -1,0 +1,6 @@
+{
+  "name": "NUVAMILO",
+  "description": "Everyday Shopping, Reimagined with NUVAMILO. A modern local commerce brand connecting customers with fresh fruits, vegetables, groceries, and daily essentials while supporting local businesses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

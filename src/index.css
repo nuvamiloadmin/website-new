@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-nuva-navy: #071C44;
+  --color-nuva-blue: #075BE8;
+  --color-nuva-cyan: #00C8EF;
+  --color-nuva-green: #2DEB80;
+  --color-nuva-surface: #F5F8FC;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    color: #071C44;
+    background-color: #FFFFFF;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.nuva-gradient-text {
+  background: linear-gradient(120deg, #075BE8 0%, #00C8EF 55%, #2DEB80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nuva-gradient-bar {
+  background: linear-gradient(90deg, #075BE8 0%, #00C8EF 55%, #2DEB80 100%);
+}
+
+.nuva-theme-btn {
+  background: linear-gradient(120deg, #071C44 0%, #075BE8 52%, #008BD2 100%);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  transition: background-position 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 28px -10px rgba(7, 91, 232, 0.55),
+    0 0 0 1px rgba(0, 200, 239, 0.35);
+}
+
+.nuva-theme-btn:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 18px 38px -10px rgba(7, 91, 232, 0.6),
+    0 8px 24px -8px rgba(45, 235, 128, 0.45),
+    0 0 0 1px rgba(45, 235, 128, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
