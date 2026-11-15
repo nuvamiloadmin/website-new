@@ -4,8 +4,10 @@ import {
   ArrowUpRight,
   Check,
   CheckCircle2,
+  Download,
   Mail,
   ShoppingBag,
+  Smartphone,
   Store,
   Truck,
   X,
@@ -25,38 +27,58 @@ interface AppOption {
   id: 'customer' | 'delivery' | 'shop';
   title: string;
   subtitle: string;
+  badge: string;
+  badgeColor: string;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
   accent: string;
+  apkFileName: string;
+  downloadUrl: string;
+  version: string;
 }
 
 const NUVAMILO_APPS: AppOption[] = [
   {
     id: 'customer',
-    title: 'NUVAMILO Customer',
-    subtitle: 'For Everyday Shoppers',
+    title: 'Nuvamilo Customer',
+    subtitle: 'Hyperlocal Shopping & Fresh Choice',
+    badge: 'For Shoppers',
+    badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
     description:
-      'Browse fresh vegetables, fruits, groceries, and daily essentials with calm clarity.',
+      'Shop groceries, fresh fruits, vegetables, and daily essentials from verified neighborhood stores with real-time tracking.',
     icon: ShoppingBag,
     accent: '#00C8EF',
-  },
-  {
-    id: 'delivery',
-    title: 'NUVAMILO Delivery',
-    subtitle: 'For Fulfillment Partners',
-    description:
-      'Streamlined pickup handoffs and careful doorstep delivery of packed NUVAMILO orders.',
-    icon: Truck,
-    accent: '#2DEB80',
+    apkFileName: 'nuvamilo.apk',
+    downloadUrl: '/downloads/nuvamilo.apk',
+    version: 'v1.0.4',
   },
   {
     id: 'shop',
-    title: 'NUVAMILO Shop',
-    subtitle: 'For Local Businesses & Merchants',
+    title: 'Nuvamilo Shop',
+    subtitle: 'Merchant Catalogue & Order Dispatch',
+    badge: 'For Merchants',
+    badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     description:
-      'Manage storefront inventory, product presentation, and daily customer orders effortlessly.',
+      'Complete seller workspace: manage live inventory, orders, fresh produce substitution proposals, and delivery assignments.',
     icon: Store,
     accent: '#075BE8',
+    apkFileName: 'nuvamilo-shop.apk',
+    downloadUrl: '/downloads/nuvamilo-shop.apk',
+    version: 'v1.0.4',
+  },
+  {
+    id: 'delivery',
+    title: 'Nuvamilo Delivery',
+    subtitle: 'Rider Fleet & Route Navigation',
+    badge: 'For Delivery Riders',
+    badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
+    description:
+      'Rider mobile operations: accept order dispatches, live turn-by-turn navigation, cash-on-delivery tracking, and counter returns.',
+    icon: Truck,
+    accent: '#2DEB80',
+    apkFileName: 'nuvamilo-delivery.apk',
+    downloadUrl: '/downloads/nuvamilo-delivery.apk',
+    version: 'v1.0.4',
   },
 ];
 
@@ -559,45 +581,59 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   const Icon = app.icon;
                   const isSelected = selectedAppId === app.id;
                   return (
-                    <motion.button
+                    <motion.div
                       key={app.id}
-                      type="button"
                       whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.99 }}
                       transition={{ duration: 0.16, ease: EASE_PREMIUM }}
                       onClick={() => setSelectedAppId(app.id)}
-                      className={`w-full flex items-start gap-4 rounded-2xl border p-4 text-left transition-all cursor-pointer ${
+                      className={`w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-all cursor-pointer ${
                         isSelected
                           ? 'border-[#075BE8] bg-[#F5F8FC] shadow-sm'
                           : 'border-[#071C44]/10 bg-white hover:border-[#075BE8]/50 hover:bg-[#F5F8FC]/60'
                       }`}
                     >
-                      <div
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white"
-                        style={{ backgroundColor: '#071C44' }}
-                      >
-                        <Icon className="h-5 w-5" />
+                      <div className="flex items-start gap-3.5 min-w-0 flex-1">
+                        <div
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-sm"
+                          style={{ backgroundColor: '#071C44' }}
+                        >
+                          <Icon className="h-5 w-5" />
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="font-display text-base font-bold text-[#071C44]">
+                              {app.title}
+                            </span>
+                            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${app.badgeColor}`}>
+                              {app.badge}
+                            </span>
+                            <span className="text-[10px] text-[#071C44]/50 font-mono">
+                              {app.version}
+                            </span>
+                          </div>
+                          <p className="text-xs font-semibold text-[#075BE8] mt-0.5">
+                            {app.subtitle}
+                          </p>
+                          <p className="mt-1 text-xs leading-relaxed text-[#071C44]/70">
+                            {app.description}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-display text-base font-bold text-[#071C44]">
-                            {app.title}
-                          </span>
-                          <span
-                            className="h-2 w-6 rounded-full shrink-0"
-                            style={{ backgroundColor: app.accent }}
-                            aria-hidden="true"
-                          />
-                        </div>
-                        <p className="text-xs font-semibold text-[#075BE8] mt-0.5">
-                          {app.subtitle}
-                        </p>
-                        <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#071C44]/72">
-                          {app.description}
-                        </p>
+                      {/* Download APK Button for Google Play / Direct Android */}
+                      <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#071C44]/8 shrink-0">
+                        <a
+                          href={app.downloadUrl}
+                          download={app.apkFileName}
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#075BE8] hover:bg-[#064bc2] text-white transition-all shadow-sm hover:shadow group cursor-pointer"
+                        >
+                          <Download className="h-3.5 w-3.5 group-hover:translate-y-0.5 transition-transform" />
+                          <span>Download APK</span>
+                        </a>
                       </div>
-                    </motion.button>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -610,38 +646,55 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 4 }}
                     transition={{ duration: 0.2, ease: EASE_PREMIUM }}
-                    className="mt-5 rounded-2xl bg-[#071C44] text-white p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                    className="mt-5 rounded-2xl bg-[#071C44] text-white p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-md"
                   >
-                    <div className="flex items-start gap-2.5">
-                      <Check className="h-4 w-4 text-[#2DEB80] shrink-0 mt-0.5" />
-                      <p className="text-xs sm:text-sm text-white/90">
-                        <span className="font-bold text-white">
-                          {NUVAMILO_APPS.find((a) => a.id === selectedAppId)?.title}
-                        </span>{' '}
-                        for{' '}
-                        {activeStoreModal === 'google-play' ? 'Google Play' : 'App Store'}{' '}
-                        is preparing for store launch. Reach us at{' '}
-                        <span className="text-[#00C8EF] font-semibold">
-                          support@nuvamilo.in
-                        </span>
-                        .
-                      </p>
-                    </div>
+                    {(() => {
+                      const selected = NUVAMILO_APPS.find((a) => a.id === selectedAppId);
+                      if (!selected) return null;
+                      return (
+                        <>
+                          <div className="flex items-start gap-2.5">
+                            <Check className="h-4 w-4 text-[#2DEB80] shrink-0 mt-0.5" />
+                            <div>
+                              <p className="text-xs sm:text-sm font-semibold text-white">
+                                {selected.title} ({selected.version})
+                              </p>
+                              <p className="text-[11px] text-white/70">
+                                Standalone Android APK package ready for installation.
+                              </p>
+                            </div>
+                          </div>
 
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setActiveStoreModal(null);
-                        setSelectedAppId(null);
-                        onNavigate(selectedAppId === 'shop' ? 'partner' : 'contact');
-                      }}
-                      className="shrink-0 rounded-xl bg-white px-3.5 py-2 text-xs font-bold text-[#071C44] hover:bg-[#00C8EF] transition-colors cursor-pointer whitespace-nowrap"
-                    >
-                      {selectedAppId === 'shop' ? 'Partner Inquiry' : 'Get Notified'}
-                    </button>
+                          <div className="flex items-center gap-2">
+                            <a
+                              href={selected.downloadUrl}
+                              download={selected.apkFileName}
+                              className="shrink-0 rounded-xl bg-[#2DEB80] hover:bg-[#25c86c] text-[#071C44] px-4 py-2 text-xs font-extrabold flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm"
+                            >
+                              <Download className="h-3.5 w-3.5" />
+                              <span>Download APK</span>
+                            </a>
+                          </div>
+                        </>
+                      );
+                    })()}
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* Modal Bottom Banner Link to Download Hub */}
+              <div className="mt-5 pt-4 border-t border-[#071C44]/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#071C44]/70">
+                <span className="flex items-center gap-1.5">
+                  <Smartphone className="h-3.5 w-3.5 text-[#075BE8]" />
+                  <span>Looking for all APK packages in one place?</span>
+                </span>
+                <a
+                  href="/download"
+                  className="font-bold text-[#075BE8] hover:text-[#064bc2] hover:underline inline-flex items-center gap-1"
+                >
+                  Open Full Download Hub <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </motion.div>
           </motion.div>
         )}
