@@ -5,6 +5,7 @@ import { PROMO_OFFER_CARDS } from '../../data/dealsData';
 
 interface PromoOfferCardsProps {
   onNavigateCategory: (slug: string) => void;
+  onNavigateOffers?: () => void;
 }
 
 export const PromoOfferCards: React.FC<PromoOfferCardsProps> = ({ onNavigateCategory }) => {

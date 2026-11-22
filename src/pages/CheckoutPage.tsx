@@ -49,7 +49,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
   const handlePlaceOrder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !phone || !addressLine || !pincode) {
-      showNotification('Please fill in your delivery address details.', 'warning');
+      showNotification('Please fill in your delivery address details.', 'info');
       return;
     }
 

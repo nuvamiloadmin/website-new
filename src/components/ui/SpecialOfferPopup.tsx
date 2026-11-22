@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { X, Sparkles, ShoppingBag, ArrowRight, Tag, Clock } from 'lucide-react';
 
 interface SpecialOfferPopupProps {
-  onShopNow: () => void;
+  onShopNow?: () => void;
 }
 
 export const SpecialOfferPopup: React.FC<SpecialOfferPopupProps> = ({ onShopNow }) => {
@@ -58,7 +58,7 @@ export const SpecialOfferPopup: React.FC<SpecialOfferPopupProps> = ({ onShopNow 
 
   const handleAction = () => {
     handleClose();
-    onShopNow();
+    onShopNow?.();
   };
 
   return (

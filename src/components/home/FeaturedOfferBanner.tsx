@@ -3,10 +3,12 @@ import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck, Truck, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface FeaturedOfferBannerProps {
-  onShopDeals: () => void;
+  onShopDeals?: () => void;
+  onNavigateShop?: () => void;
 }
 
-export const FeaturedOfferBanner: React.FC<FeaturedOfferBannerProps> = ({ onShopDeals }) => {
+export const FeaturedOfferBanner: React.FC<FeaturedOfferBannerProps> = ({ onShopDeals, onNavigateShop }) => {
+  const handleDeals = onNavigateShop || onShopDeals || (() => {});
   return (
     <section className="py-8 sm:py-12 bg-white">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +54,7 @@ export const FeaturedOfferBanner: React.FC<FeaturedOfferBannerProps> = ({ onShop
               <div className="pt-2">
                 <button
                   type="button"
-                  onClick={onShopDeals}
+                  onClick={handleDeals}
                   className="rounded-full bg-[#20E78A] hover:bg-[#19cf78] text-[#071D49] font-display text-xs sm:text-sm font-extrabold px-8 py-3.5 shadow-lg shadow-emerald-500/20 inline-flex items-center gap-2 transition-all hover:scale-102 cursor-pointer"
                 >
                   <span>Explore Daily Deals</span>

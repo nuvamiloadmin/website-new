@@ -233,7 +233,7 @@ function AppContent() {
       <CustomCursor />
 
       {/* Special Offer First Visit Popup */}
-      <SpecialOfferPopup />
+      <SpecialOfferPopup onShopNow={() => navigate('shop')} />
 
       {/* Header Stack */}
       <header className="sticky top-0 z-40 bg-white shadow-xs">
