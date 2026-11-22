@@ -14,10 +14,14 @@ interface FeaturedProductsProps {
 const TABS = [
   { id: 'all', label: 'All Items' },
   { id: 'fresh-vegetables', label: 'Fresh Vegetables 🍅' },
+  { id: 'fresh-fruits', label: 'Fresh Fruits 🍎' },
   { id: 'rice-grains', label: 'Rice, Atta & Grains 🌾' },
   { id: 'dairy-eggs', label: 'Dairy & Eggs 🥛' },
   { id: 'pulses-lentils', label: 'Dals & Pulses' },
+  { id: 'cooking-oils', label: 'Oils & Ghee' },
   { id: 'spices', label: 'Spices & Masalas' },
+  { id: 'snacks', label: 'Snacks & Dry Fruits' },
+  { id: 'beverages', label: 'Tea & Coffee' },
 ];
 
 export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
@@ -30,8 +34,8 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   const handleViewAll = onNavigateShop || onViewAllShop || (() => {});
 
   const filteredProducts = activeTab === 'all'
-    ? PRODUCTS_DATA.slice(0, 8)
-    : PRODUCTS_DATA.filter((p) => p.categorySlug === activeTab).slice(0, 8);
+    ? PRODUCTS_DATA.slice(0, 12)
+    : PRODUCTS_DATA.filter((p) => p.categorySlug === activeTab);
 
   return (
     <section className="py-12 sm:py-16 bg-white">
