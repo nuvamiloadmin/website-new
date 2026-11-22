@@ -20,6 +20,7 @@ export interface Product {
   isBestSeller?: boolean;
   isNewArrival?: boolean;
   isOrganic?: boolean;
+  isFeatured?: boolean;
   description: string;
   features?: string[];
   nutritionalInfo?: {

@@ -7,7 +7,8 @@ import { ProductCard } from '../product/ProductCard';
 interface FeaturedProductsProps {
   onQuickView: (product: Product) => void;
   onNavigateProduct: (slug: string) => void;
-  onViewAllShop: () => void;
+  onViewAllShop?: () => void;
+  onNavigateShop?: () => void;
 }
 
 const TABS = [
@@ -23,8 +24,10 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   onQuickView,
   onNavigateProduct,
   onViewAllShop,
+  onNavigateShop,
 }) => {
   const [activeTab, setActiveTab] = useState('all');
+  const handleViewAll = onNavigateShop || onViewAllShop || (() => {});
 
   const filteredProducts = activeTab === 'all'
     ? PRODUCTS_DATA.slice(0, 8)
@@ -83,7 +86,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
         <div className="mt-12 text-center">
           <button
             type="button"
-            onClick={onViewAllShop}
+            onClick={handleViewAll}
             className="rounded-full bg-white border-2 border-[#071D49] hover:bg-[#071D49] text-[#071D49] hover:text-white px-8 py-3.5 font-display text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all cursor-pointer inline-flex items-center gap-2"
           >
             <span>View All Grocery Catalog</span>

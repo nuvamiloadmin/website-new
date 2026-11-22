@@ -3,10 +3,13 @@ import { motion } from 'motion/react';
 import { ArrowRight, ShoppingBag, ShieldCheck, Clock, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
-  onShopNow: () => void;
+  onShopNow?: () => void;
+  onNavigateShop?: () => void;
+  onNavigateOffers?: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onShopNow }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onShopNow, onNavigateShop }) => {
+  const handleShop = onNavigateShop || onShopNow || (() => {});
   return (
     <section className="relative overflow-hidden bg-[#F7F9FC] py-14 sm:py-20 lg:py-24 border-b border-slate-100">
       {/* Decorative Vegetable Outlines Background (hero-bg-image.png) */}
@@ -83,7 +86,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onShopNow }) => {
               {/* Rounded pill CTA with circular arrow icon */}
               <button
                 type="button"
-                onClick={onShopNow}
+                onClick={handleShop}
                 className="group relative flex items-center gap-3 rounded-full bg-[#071D49] hover:bg-gradient-to-r hover:from-[#0057D9] hover:via-[#009BFF] hover:to-[#20E78A] text-white px-8 py-4 font-display text-sm sm:text-base font-bold shadow-xl shadow-blue-950/20 transition-all duration-300 hover:shadow-2xl hover:scale-102 cursor-pointer"
               >
                 <span>Shop Now</span>

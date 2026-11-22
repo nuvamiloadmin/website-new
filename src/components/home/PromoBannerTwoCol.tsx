@@ -3,10 +3,16 @@ import { motion } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 interface PromoBannerTwoColProps {
-  onNavigate: (route: string) => void;
+  onNavigate?: (route: string) => void;
+  onNavigateCategory?: (slug: string) => void;
+  onNavigateShop?: () => void;
 }
 
-export const PromoBannerTwoCol: React.FC<PromoBannerTwoColProps> = ({ onNavigate }) => {
+export const PromoBannerTwoCol: React.FC<PromoBannerTwoColProps> = ({
+  onNavigate,
+  onNavigateCategory,
+  onNavigateShop,
+}) => {
   return (
     <section className="py-8 sm:py-12 bg-white">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,7 +21,11 @@ export const PromoBannerTwoCol: React.FC<PromoBannerTwoColProps> = ({ onNavigate
           <motion.div
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            onClick={() => onNavigate('/shop?filter=organic')}
+            onClick={() => {
+              if (onNavigateCategory) onNavigateCategory('fresh-fruits');
+              else if (onNavigateShop) onNavigateShop();
+              else onNavigate?.('/shop?filter=organic');
+            }}
             className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071D49] to-[#0057D9] p-7 sm:p-9 text-white shadow-lg cursor-pointer group flex flex-col justify-between min-h-[260px]"
           >
             <div className="relative z-10 max-w-[62%] space-y-2">
@@ -47,7 +57,10 @@ export const PromoBannerTwoCol: React.FC<PromoBannerTwoColProps> = ({ onNavigate
           <motion.div
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            onClick={() => onNavigate('/offers')}
+            onClick={() => {
+              if (onNavigateShop) onNavigateShop();
+              else onNavigate?.('/offers');
+            }}
             className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0057D9] to-[#009BFF] p-7 sm:p-9 text-white shadow-lg cursor-pointer group flex flex-col justify-between min-h-[260px]"
           >
             <div className="relative z-10 max-w-[62%] space-y-2">

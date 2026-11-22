@@ -2,6 +2,7 @@ export type PageId =
   | 'home'
   | 'shop'
   | 'category'
+  | 'categories'
   | 'product'
   | 'cart'
   | 'checkout'
@@ -21,6 +22,11 @@ export type PageId =
   | 'refund-policy'
   | 'privacy-policy'
   | 'terms'
+  | 'how-it-works'
+  | 'customers'
+  | 'businesses'
+  | 'solutions'
+  | 'partner'
   | 'not-found';
 
 export interface RouteParams {
@@ -32,6 +38,7 @@ export const PAGE_ROUTES: Record<PageId, string> = {
   home: '/',
   shop: '/shop',
   category: '/category',
+  categories: '/categories',
   product: '/product',
   cart: '/cart',
   checkout: '/checkout',
@@ -51,6 +58,11 @@ export const PAGE_ROUTES: Record<PageId, string> = {
   'refund-policy': '/refund-policy',
   'privacy-policy': '/privacy-policy',
   terms: '/terms',
+  'how-it-works': '/how-it-works',
+  customers: '/customers',
+  businesses: '/businesses',
+  solutions: '/solutions',
+  partner: '/partner',
   'not-found': '/404',
 };
 
@@ -58,6 +70,7 @@ export const PAGE_TITLES: Record<PageId, string> = {
   home: 'NUVAMILO — Fresh Groceries for Your Everyday Needs',
   shop: 'Shop All Groceries — NUVAMILO',
   category: 'Browse Category — NUVAMILO',
+  categories: 'All Categories — NUVAMILO',
   product: 'Product Details — NUVAMILO',
   cart: 'Shopping Cart — NUVAMILO',
   checkout: 'Secure Checkout — NUVAMILO',
@@ -77,6 +90,11 @@ export const PAGE_TITLES: Record<PageId, string> = {
   'refund-policy': 'Hassle-Free Return & Refund Policy — NUVAMILO',
   'privacy-policy': 'Privacy & Security Policy — NUVAMILO',
   terms: 'Terms & Conditions of Service — NUVAMILO',
+  'how-it-works': 'How It Works — NUVAMILO',
+  customers: 'For Customers — NUVAMILO',
+  businesses: 'For Businesses — NUVAMILO',
+  solutions: 'Commerce Solutions — NUVAMILO',
+  partner: 'Merchant Partner — NUVAMILO',
   'not-found': '404 Page Not Found — NUVAMILO',
 };
 
@@ -105,6 +123,12 @@ export function parseRoute(pathname: string): { page: PageId; params: RouteParam
   if (clean === '/account/orders') return { page: 'orders', params: {} };
   if (clean === '/account/addresses') return { page: 'addresses', params: {} };
   if (clean === '/blog' || clean === '/blogs' || clean === '/journal') return { page: 'blog', params: {} };
+  if (clean === '/how-it-works') return { page: 'how-it-works', params: {} };
+  if (clean === '/categories') return { page: 'categories', params: {} };
+  if (clean === '/customers') return { page: 'customers', params: {} };
+  if (clean === '/businesses') return { page: 'businesses', params: {} };
+  if (clean === '/solutions') return { page: 'solutions', params: {} };
+  if (clean === '/partner') return { page: 'partner', params: {} };
 
   if (clean.startsWith('/category/')) {
     const slug = clean.replace('/category/', '');
