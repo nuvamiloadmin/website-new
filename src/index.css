@@ -1,66 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-poppins: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --color-nuva-navy: #071C44;
-  --color-nuva-blue: #075BE8;
-  --color-nuva-cyan: #00C8EF;
-  --color-nuva-green: #2DEB80;
-  --color-nuva-surface: #F5F8FC;
+  --color-nuva-navy: #071D49;
+  --color-nuva-royal: #0057D9;
+  --color-nuva-blue: #009BFF;
+  --color-nuva-cyan: #00C8F8;
+  --color-nuva-green: #20E78A;
+  --color-nuva-light: #F7F9FC;
+  --color-nuva-surface: #FFFFFF;
+  --color-nuva-dark: #051433;
 }
 
 @layer base {
   html {
-    font-family: var(--font-sans);
+    font-family: "Inter", var(--font-sans), sans-serif;
     scroll-behavior: smooth;
-    color: #071C44;
+    color: #071D49;
     background-color: #FFFFFF;
     overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     overflow-x: clip;
+    font-family: "Inter", var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: "Poppins", var(--font-display), sans-serif !important;
     text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p, span, label, input, button, select, textarea, a {
+    font-family: "Inter", var(--font-sans), sans-serif;
   }
 }
 
-.font-display {
-  font-family: var(--font-display);
+.font-display,
+.font-heading,
+.font-poppins {
+  font-family: "Poppins", var(--font-display), sans-serif !important;
 }
 
+.font-sans,
+.font-inter {
+  font-family: "Inter", var(--font-sans), sans-serif !important;
+}
+
+/* Custom Gradients */
 .nuva-gradient-text {
-  background: linear-gradient(120deg, #075BE8 0%, #00C8EF 55%, #2DEB80 100%);
+  background: linear-gradient(135deg, #0057D9 0%, #009BFF 50%, #20E78A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.nuva-gradient-bar {
-  background: linear-gradient(90deg, #075BE8 0%, #00C8EF 55%, #2DEB80 100%);
+.nuva-gradient-bg {
+  background: linear-gradient(135deg, #071D49 0%, #0057D9 60%, #009BFF 100%);
 }
 
-.nuva-theme-btn {
-  background: linear-gradient(120deg, #071C44 0%, #075BE8 52%, #008BD2 100%);
+.nuva-btn-gradient {
+  background: linear-gradient(135deg, #071D49 0%, #0057D9 50%, #20E78A 100%);
   background-size: 200% 100%;
   background-position: 0% 50%;
-  transition: background-position 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 12px 28px -10px rgba(7, 91, 232, 0.55),
-    0 0 0 1px rgba(0, 200, 239, 0.35);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nuva-theme-btn:hover {
+.nuva-btn-gradient:hover {
   background-position: 100% 50%;
-  box-shadow: 0 18px 38px -10px rgba(7, 91, 232, 0.6),
-    0 8px 24px -8px rgba(45, 235, 128, 0.45),
-    0 0 0 1px rgba(45, 235, 128, 0.55);
+  box-shadow: 0 12px 25px -8px rgba(0, 87, 217, 0.5), 0 0 0 1px rgba(32, 231, 138, 0.4);
+}
+
+.nuva-btn-green {
+  background: linear-gradient(135deg, #20E78A 0%, #00C8F8 100%);
+  transition: all 0.3s ease;
+}
+
+.nuva-btn-green:hover {
+  box-shadow: 0 10px 20px -6px rgba(32, 231, 138, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Subtle Floating Animation for Hero and Badges */
+@keyframes nuvaFloatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float-slow {
+  animation: nuvaFloatSlow 4s ease-in-out infinite;
+}
+
+@keyframes nuvaPulseGlow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: nuvaPulseGlow 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F9FC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #009BFF;
+}
+
+/* Hide scrollbars for clean horizontal categories list */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Line clamp helpers */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -343,35 +343,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-8 sm:gap-8 lg:gap-6">
               <div className="space-y-4">
                 <h3 className="font-display text-xs font-bold uppercase tracking-wider text-white/95 pb-2 border-b border-white/10">
-                  Platform
+                  Shop & Discover
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   <li>
-                    <button type="button" onClick={() => onNavigate('home')} className={linkClass}>
-                      <span>Home</span>
+                    <button type="button" onClick={() => onNavigate('shop')} className={linkClass}>
+                      <span>All Groceries</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('offers')} className={linkClass}>
+                      <span>Deals & Combos</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('collections')} className={linkClass}>
+                      <span>Curated Collections</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('blog')} className={linkClass}>
+                      <span>Fresh Stories & Blog</span>
                     </button>
                   </li>
                   <li>
                     <button type="button" onClick={() => onNavigate('about')} className={linkClass}>
-                      <span>About Us</span>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() => onNavigate('how-it-works')}
-                      className={linkClass}
-                    >
-                      <span>How It Works</span>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() => onNavigate('categories')}
-                      className={linkClass}
-                    >
-                      <span>Categories</span>
+                      <span>About NUVAMILO</span>
                     </button>
                   </li>
                 </ul>
@@ -379,34 +376,43 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <div className="space-y-4">
                 <h3 className="font-display text-xs font-bold uppercase tracking-wider text-white/95 pb-2 border-b border-white/10">
-                  Ecosystem
+                  Customer & Orders
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('customers')}
+                      onClick={() => onNavigate('account')}
                       className={linkClass}
                     >
-                      <span>For Customers</span>
+                      <span>My Account</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('businesses')}
+                      onClick={() => onNavigate('orders')}
                       className={linkClass}
                     >
-                      <span>For Businesses</span>
+                      <span>Track Orders</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('solutions')}
+                      onClick={() => onNavigate('wishlist')}
                       className={linkClass}
                     >
-                      <span>Commerce Solutions</span>
+                      <span>Wishlist</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => onNavigate('cart')}
+                      className={linkClass}
+                    >
+                      <span>Shopping Cart</span>
                     </button>
                   </li>
                   <li>
@@ -415,7 +421,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                       onClick={() => onNavigate('partner')}
                       className={linkClass}
                     >
-                      <span>Partner With Us</span>
+                      <span>Merchant Partner</span>
                     </button>
                   </li>
                 </ul>
@@ -423,52 +429,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <div className="space-y-4">
                 <h3 className="font-display text-xs font-bold uppercase tracking-wider text-white/95 pb-2 border-b border-white/10">
-                  Categories
+                  Popular Aisles
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('categories')}
+                      onClick={() => onNavigate('shop')}
                       className={linkClass}
                     >
-                      <span>Groceries</span>
+                      <span>Rice & Grains</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('categories')}
+                      onClick={() => onNavigate('shop')}
                       className={linkClass}
                     >
-                      <span>Fresh Vegetables</span>
+                      <span>Pulses & Lentils</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('categories')}
+                      onClick={() => onNavigate('shop')}
                       className={linkClass}
                     >
-                      <span>Fresh Fruits</span>
+                      <span>Pure Cooking Oils</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('categories')}
+                      onClick={() => onNavigate('shop')}
                       className={linkClass}
                     >
-                      <span>Daily Essentials</span>
+                      <span>Dairy & Farm Fresh</span>
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      onClick={() => onNavigate('categories')}
+                      onClick={() => onNavigate('shop')}
                       className={linkClass}
                     >
-                      <span>Household Products</span>
+                      <span>Snacks & Sips</span>
                     </button>
                   </li>
                 </ul>
@@ -476,12 +482,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <div className="space-y-4">
                 <h3 className="font-display text-xs font-bold uppercase tracking-wider text-white/95 pb-2 border-b border-white/10">
-                  Support & Legal
+                  Help & Policies
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   <li>
                     <button type="button" onClick={() => onNavigate('faq')} className={linkClass}>
-                      <span>FAQ</span>
+                      <span>FAQ & Support</span>
                     </button>
                   </li>
                   <li>
@@ -490,13 +496,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     </button>
                   </li>
                   <li>
-                    <button type="button" onClick={() => onNavigate('privacy')} className={linkClass}>
-                      <span>Privacy Policy</span>
+                    <button type="button" onClick={() => onNavigate('shipping-policy')} className={linkClass}>
+                      <span>Shipping Policy</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('refund-policy')} className={linkClass}>
+                      <span>Return & Refund</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={() => onNavigate('privacy-policy')} className={linkClass}>
+                      <span>Privacy & Security</span>
                     </button>
                   </li>
                   <li>
                     <button type="button" onClick={() => onNavigate('terms')} className={linkClass}>
-                      <span>Terms & Conditions</span>
+                      <span>Terms of Service</span>
                     </button>
                   </li>
                 </ul>

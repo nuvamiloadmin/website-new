@@ -4,9 +4,77 @@ import { PageHeader } from '../components/PageHeader';
 import { RevealBlock } from '../components/MotionPrimitives';
 
 interface LegalPageProps {
-  mode: 'privacy' | 'terms';
+  mode: 'privacy' | 'terms' | 'shipping' | 'refund';
   onNavigate: (page: PageId) => void;
 }
+
+const SHIPPING_SECTIONS = [
+  {
+    id: 'dispatch',
+    title: '01. Hyperlocal 15-30 Minute Express Delivery',
+    body: [
+      'NUVAMILO operates a network of hyperlocal micro-fulfilment centers and partnered verified grocery stores. Once your order is confirmed, our automated batching system alerts the nearest picker within 60 seconds.',
+      'Our dedicated rider fleet arrives at your doorstep typically within 15 to 30 minutes in active serviceable pincodes.',
+    ],
+  },
+  {
+    id: 'fee-structure',
+    title: '02. Shipping Charges & Free Delivery Threshold',
+    body: [
+      'Orders with an item subtotal of ₹499 or more qualify for FREE Express Delivery. For orders below ₹499, a nominal delivery fee of ₹29 to ₹40 applies to ensure prompt and sustainable rider compensation.',
+      'During monsoon surges or peak holiday hours, slight dispatch windows may adjust to ensure rider road safety.',
+    ],
+  },
+  {
+    id: 'packaging',
+    title: '03. Eco-Friendly & Insulated Cold-Chain Packaging',
+    body: [
+      'Dairy, frozen items, and farm fresh vegetables are packed in insulated temperature-regulated totes. Groceries are delivered in unbleached food-grade kraft bags to eliminate single-use plastic waste.',
+    ],
+  },
+];
+
+const REFUND_SECTIONS = [
+  {
+    id: 'policy',
+    title: '01. 100% Freshness Guarantee & Doorstep Inspection',
+    body: [
+      'At NUVAMILO, we guarantee the freshness and quality of every fruit, vegetable, dairy product, and packaged grocery staple we deliver.',
+      'Upon arrival of your order, you are welcome to inspect all items while the delivery executive is present. If any vegetable or grocery product does not meet your complete satisfaction, you can return it to the delivery executive on the spot with zero questions asked.',
+    ],
+  },
+  {
+    id: 'return-window',
+    title: '02. Hassle-Free Post-Delivery Return Window',
+    body: [
+      'Perishable Produce (Vegetables, Fruits, Fresh Dairy & Bakery): Any quality issues can be reported within 24 hours of delivery directly through the NUVAMILO App or by contacting customer support.',
+      'Packaged Food & Household Staples: Unopened items with intact manufacturer seals can be returned or exchanged within 48 hours of delivery.',
+    ],
+  },
+  {
+    id: 'refund-timeline',
+    title: '03. Automated Refund Processing & Timelines',
+    body: [
+      'UPI / Instant QR Payments: Refunds are initiated automatically and credited to your original UPI account (GPay, PhonePe, Paytm, BHIM) within 15 minutes to 2 hours.',
+      'Credit & Debit Cards: Refunds are processed through our banking gateway within 24 hours, reflecting on your bank statement within 3 to 5 working days depending on your bank.',
+      'Cash on Delivery (COD) Orders: For items returned at the doorstep on COD orders, the bill amount is deducted immediately. For post-delivery returns, refunds are credited directly to your verified UPI ID or NUVAMILO Store Wallet as preferred.',
+    ],
+  },
+  {
+    id: 'damaged-items',
+    title: '04. Damaged, Defective, or Incorrect Deliveries',
+    body: [
+      'If you receive an item with damaged packaging, broken seals, or an incorrect variant, simply snap a quick photo and raise a ticket under "My Orders" or message our support team on WhatsApp at +91 98765 43210. An instant replacement or full refund will be dispatched immediately.',
+    ],
+  },
+  {
+    id: 'support-contact',
+    title: '05. Dedicated Customer Support & Assistance',
+    body: [
+      'Our customer care team is available daily from 6:00 AM to 11:00 PM IST to assist with cancellations, order modifications, and immediate refund queries. Email us at support@nuvamilo.in or tap "Contact Us" anytime.',
+    ],
+  },
+];
 
 const PRIVACY_SECTIONS = [
   {
@@ -74,22 +142,33 @@ const TERMS_SECTIONS = [
 ];
 
 export const LegalPage: React.FC<LegalPageProps> = ({ mode, onNavigate }) => {
-  const isPrivacy = mode === 'privacy';
-  const sections = isPrivacy ? PRIVACY_SECTIONS : TERMS_SECTIONS;
+  let title = 'Privacy Policy';
+  let description = 'How NUVAMILO respects, handles, and protects information shared through our platform.';
+  let sections = PRIVACY_SECTIONS;
+
+  if (mode === 'terms') {
+    title = 'Terms & Conditions';
+    description = 'Clear guidelines governing the use of the NUVAMILO website, services, and brand assets.';
+    sections = TERMS_SECTIONS;
+  } else if (mode === 'shipping') {
+    title = 'Express Shipping Policy';
+    description = 'Hyperlocal 15-30 minute delivery timelines, free delivery threshold, and cold-chain care.';
+    sections = SHIPPING_SECTIONS;
+  } else if (mode === 'refund') {
+    title = 'Return & Refund Policy';
+    description = 'Our 100% fresh promise, instant doorstep return checks, and automated digital refunds.';
+    sections = REFUND_SECTIONS;
+  }
 
   return (
     <div className="bg-white text-[#071C44]">
       <PageHeader
-        eyebrow="Legal & Governance"
-        title={isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}
-        description={
-          isPrivacy
-            ? 'How NUVAMILO respects, handles, and protects information shared through our website and partnership channels.'
-            : 'Clear guidelines governing the use of the NUVAMILO website, brand assets, and inquiry channels.'
-        }
+        eyebrow="Customer Policies & Governance"
+        title={title}
+        description={description}
         secondaryAction={{
-          label: isPrivacy ? 'Read Terms & Conditions' : 'Read Privacy Policy',
-          onClick: () => onNavigate(isPrivacy ? 'terms' : 'privacy'),
+          label: 'Contact Support',
+          onClick: () => onNavigate('contact'),
         }}
       />
 
